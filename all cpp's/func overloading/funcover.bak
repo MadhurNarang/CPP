@@ -1,0 +1,63 @@
+//DISPLAY AREA OF SQUARE,RECTANGLE,TRIANGLE USING FUNCTION OVERLOADING
+#include<iostream.h>
+#include<conio.h>
+#include<math.h>
+#include<stdlib.h>
+void area(float a)
+{
+ float area;
+ area=a*a;
+ cout<<"AREA OF SQAURE IS   "<<area;
+}
+void area(float a, float b)
+{
+ float area;
+ area=a*b;
+ cout<<"AREA OF RECTANGLE IS   "<<area;
+}
+void area(float a,float b,float c)
+{
+ float area,s;
+ s=(a+b+c)/2;
+ area=sqrt((s)*(s-a)*(s-b)*(s-c));
+ cout<<"AREA OF TRIANGLE IS   "<<area;
+}
+void main()
+{
+ int choice;
+ float a,b,c;
+ cout<<"PRESS 1 TO CALCULATE AREA OF SQUARE\nPRESS 2 TO CALCULATE AREA OF RECTANGLE\nPRESS 3 TO CALCULATE AREA OF TRIANGLE\nPRESS 4 TO EXIT\n";
+ cin>>choice;
+ switch(choice)
+  {
+	 case 1:  clrscr();
+				 cout<<"ENTER SIDE OF SQUARE\n";
+				 cin>>a;
+				 area(a);
+				 break;
+
+	 case 2:  clrscr();
+				 cout<<"ENTER SIDES OF REACTANGLE\n";
+				 cout<<"ENTER THE LENGTH   ";
+				 cin>>a;
+				 cout<<"ENTER THE BREADTH   ";
+				 cin>>b;
+				 area(a,b);
+				 break;
+
+	 case 3:  clrscr();
+				 cout<<"ENTER SIDES OF RECTANGLE\n";
+				 cout<<"ENTER THE FIRST SIDE   ";
+				 cin>>a;
+				 cout<<"ENTER THE SECOND SIDE   ";
+				 cin>>b;
+				 cout<<"ENTER THE THIRD SIDE   ";
+				 cin>>c;
+				 area(a,b,c);
+				 break;
+
+	 case 4:  exit(0);
+
+	 default: cout<<"WRONG CHOICE ENTERED";
+  }
+}

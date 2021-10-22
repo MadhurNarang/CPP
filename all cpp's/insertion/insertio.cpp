@@ -1,0 +1,53 @@
+//insertion of element in sorted array
+#include<iostream.h>
+void insert(int a[],int &s,int element)
+{
+ int i,p;
+ if(element<a[0])
+  p=0;
+ else
+  if(element>a[s-1])
+	 p=s;
+  else
+  {
+	for(i=0;i<s;i++)
+	 {
+	  if(element>=a[i]&&element<=a[i+1])
+		{
+		 p=i+1;
+		 break;
+		}
+	 }
+  }
+  for(i=s;i>=p;i--)
+	 a[i]=a[i-1];
+
+  a[p]=element;
+  s++;
+
+}
+void main()
+{
+ int a[20],i,n,element;
+ cout<<"ENTER THE NUMBER OF ELEMENTS  :   \n";
+ cin>>n;
+ cout<<"ENTER THE ELEMENTS IN SORTED WAY AND IN ASCENDING ORDER  :  \n";
+ for(i=0;i<n;i++)
+ {
+	cin>>a[i];
+ }
+ cout<<"ENTERED ARRAY IS :\n";
+ for(i=0;i<n;i++)
+ {
+	cout<<a[i]<<" ";
+ }
+ cout<<"\nENTER THE ELEMENT TO BE ENTERED    ";
+ cin>>element;
+ insert(a,n,element);
+ cout<<"NOW THE ARRAY IS :\n";
+ for(i=0;i<n;i++)
+ {
+	cout<<a[i]<<" ";
+ }
+
+}

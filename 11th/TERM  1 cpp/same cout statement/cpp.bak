@@ -1,0 +1,11 @@
+#include<iostream.h>
+void main()
+{
+ cout<<"SUBJECT \tMARKS\n~~~~~~~ \t~~~~~\nMATHS \t100\nPHYSICS \t100\nCHEMISTRY \t100\n";
+
+
+
+
+
+
+}

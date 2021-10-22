@@ -1,0 +1,35 @@
+//IMPLEMENTATION OF CLASS USING COPY CONSTRUCTOR
+#include<iostream.h>
+#include<stdio.h>
+#include<string.h>
+class stud
+{
+int roll;
+char name[20];
+public:
+stud()
+{ 
+roll=0;
+strcpy(name,"null");
+}
+void in()
+{
+cout<<"\nENTER ROLL NUMBER \t";
+cin>>roll;
+cout<<"ENTER THE NAME\t\t";
+gets(name);
+}
+void out()
+{
+cout<<"ROLL NUMBER\t"<<roll;
+cout<<"\nNAME\t\t"<<name;}
+};
+void main()
+{
+stud a;
+cout<<"DEFAULT VALUES:\n\n";
+a.out();
+a.in();
+cout<<"\nTHE INPUT VALUES:\n\n";
+a.out();
+}

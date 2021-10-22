@@ -1,0 +1,45 @@
+//EXCHANGING ROW ELEMENTS
+#include<iostream.h>                                  //HEADER FILES INCLUDED
+void main()
+{
+ int a[10][10],r,c,f,i,k,g;                            //2D ARRAY DECLARED
+ cout<<"ENTER NUMBER OF ROWS\n";
+ cin>>r;
+ cout<<"ENTER NUMBER OF COLUMNS\n";
+ cin>>c;
+ cout<<"NOW INPUT 2D ARRAY:\n";
+ for( i=0;i<r;i++)
+  {
+	for( f=0;f<c;f++)
+	 {
+		cin>>a[i][f];                             //INITIALISING THE ARRAY
+	 }
+  }
+ cout<<"\nARRAY 1 ENTERED  IS\n";
+ for(i=0;i<r;i++)
+  {
+	for(f=0;f<c;f++)
+	 {
+		cout<<a[i][f]<<" ";             //DISPLAYING THE ENTERED ARRAY
+	 }
+	cout<<endl;
+  }
+ for(f=0;f<c;f++)
+  {
+	for(i=0,g=r-1;i<r/2;i++)
+	 {
+	  k=a[i][f];
+	  a[i][f]=a[g][f];                   //CONDITION FOR SWAPPING ROW ELEMENTS
+	  a[g][f]=k;
+	 }
+  }
+ cout<<"SWAPPED ARRAY IS\n";
+ for( i=0;i<r;i++)
+  {
+	for( f=0;f<c;f++)
+	 {
+		cout<<a[i][f]<<" ";            //DISPLAYING THE SWAPPED ARRAY
+	 }
+	cout<<endl;
+  }
+}

@@ -1,0 +1,16 @@
+#include<iostream.h>
+int sum(int c,int d);
+void main()
+{
+ int a,b=3,s=2;
+ cout<<"ENTER THE NUMBERS";
+ cin>>a>>b;
+ sum(a,b);
+ cout<<"sum is"<<s;
+}
+int sum(int c,int d)
+{
+ int t=c+d;
+ return(t);
+}
+

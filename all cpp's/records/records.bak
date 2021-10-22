@@ -1,0 +1,98 @@
+#include<iostream.h>
+#include<stdlib.h>
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+  int maths[5],physics[5],chemistry[5],rollno[5],choice,average[5],x,i,nos,limit=0;
+  char name[5][30];
+c:cout<<"PRESS 1 TO ENTER VALUES\nPRESS 2 TO DISPLAY REPORT OF EXISTING STUDENTS\nPRESS 3 TO SEARCH ROLL NO AND DISPLAY DETAILS\nPRESS 4 TO EXIT  \n";
+  cout<<"\nENTER YOUR CHOICE  : ";
+  cin>>choice;
+  if(choice==1)
+	{limit=1;
+	 cout<<"ENTER NO OF STUDENTS YOU WANT TO ENTER DETAILS  : ";
+	 cin>>nos;
+	 cout<<"\n";
+	 for(int i=0;i<nos;i++)
+	 {
+	  cout<<"\nENTER DEATILS OF STUDENT "<<(i+1)<<":\n";
+	  cout<<"\nENTER ROLL NO  : ";
+	  cin>>rollno[i];
+	  cout<<"\nENTER THE NAME  : ";
+	  gets(name[i]);
+	  cout<<"\nENTER MATHS MARKS  : ";
+	  cin>>maths[i];
+	  cout<<"\nENTER PHYSICS MARKS  : ";
+	  cin>>physics[i];
+	  cout<<"\nENTER CHEMISTRY MARKS  : ";
+	  cin>>chemistry[i];
+	  cout<<"\n\n";
+	 }
+	 clrscr();
+	 goto c;
+	}
+  if(choice==2)
+	{ if(limit==0)
+	  {cout<<"DETAILS NOT ENTERED";getch();clrscr();goto c;}
+	 for( i=0;i<nos;i++)
+	 {
+	  cout<<"\n DEATILS OF STUDENT "<<(i+1)<<" ARE:  \n\n";
+	  cout<<"\nROLL NO IS :   ";
+	  cout<<rollno[i];
+	  cout<<"\nNAME IS :   ";
+	  puts(name[i]);
+	  cout<<"MATHS MARKS IS   ";
+	  cout<<maths[i];
+	  cout<<"\nPHYSICS MARKS IS   ";
+	  cout<<physics[i];
+	  cout<<"\nCHEMISTRY MARKS IS   ";
+	  cout<<chemistry[i];
+	  average[i]=(maths[i]+physics[i]+chemistry[i])/3;
+	  cout<<"\nAVERAGE SCORE IS   ";
+	  cout<<average[i]<<"\n\n";
+	 }
+	 getch();
+	 clrscr();
+	 goto c;
+	}
+  if(choice==3)
+  {
+	if(limit==0)
+	  {cout<<"DETAILS NOT ENTERED";getch();clrscr();goto c;}
+	cout<<"ENTER THE ROLL NO WHOSE DETAILS YOU WANT TO GET:   ";
+	cin>>x;
+	for(i=0;i<nos;i++)
+	{
+	 if(x==rollno[i])
+	 {
+	  cout<<"\n\n DEATILS OF STUDENT "<<(i+1)<<" ARE:  \n\n";
+	  cout<<"\n ROLL NO IS :   ";
+	  cout<<rollno[i];
+	  cout<<"\nNAME IS :   ";
+	  puts(name[i]);
+	  cout<<" MATHS MARKS IS   ";
+	  cout<<maths[i];
+	  cout<<"\n PHYSICS MARKS IS   ";
+	  cout<<physics[i];
+	  cout<<"\nCHEMISTRY MARKS IS   ";
+	  cout<<chemistry[i];
+	  average[i]=(maths[i]+physics[i]+chemistry[i])/3;
+	  cout<<"\nAVERAGE SCORE IS   ";
+	  cout<<average[i];
+	  getch();
+	  clrscr();
+	  goto c;
+	 }
+	}
+	cout<<"ROLL NO NOT FOUND";
+	 getch();
+	 clrscr();
+	 goto c;
+
+  }
+  if(choice==4)
+  {
+	 exit(0);
+  }
+}

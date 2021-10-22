@@ -1,0 +1,19 @@
+#include<iostream.h>
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+void main()
+{
+ int i=0;;
+ char c[100],d,e;
+ cout<<"ENTER THE STRING\n";
+ gets(c);
+ for(;c[i]!='\0';i++)
+  {
+	if(c[i]==' ')
+	{
+
+	}
+  }
+}
+

@@ -1,0 +1,43 @@
+//COMPARE,CONCATENATE WITHOUT USING LIBRARY FUNCTIONS
+#include<stdio.h>
+#include<iostream.h>
+void main()
+{
+ char str1[50],str2[100],str[200];
+ int i,j,k,m,p=0;
+ cout<<"ENTER THE FIRST STRING ";
+ gets(str1);
+ cout<<"ENTER THE SECOND STRING ";
+ gets(str2);
+ for(i=0;str1[i]!='\0';i++);
+ for(j=0;str1[j]!='\0';j++);
+ if(i==j)
+  {
+	for(k=0;k<=i;k++)
+	 {
+	  if(str1[k]!=str2[k])
+		{
+			p=1;
+			break;
+		}
+	 }
+  }
+ else
+	cout<<"\nSTRINGS ARE NOT EQUAL";
+ if(p==1)
+	 cout<<"\nSTRINGS ARE NOT EQUAL";
+ else
+	 cout<<"\nSTRINGS ARE EQUAL";
+ p=0;
+ m=0;
+ for(k=0;k<i;k++)
+	 str[p++]=str1[k];
+ m=p;
+ for(k=0;k<j;k++)
+	str[m++]=str2[k];
+ str[m]='\0';
+ cout<<"\n\nCONCATENATED STRING IS ";
+ for(i=0;i<m;i++)
+	cout<<str[i];
+}
+

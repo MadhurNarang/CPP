@@ -1,0 +1,39 @@
+#include<iostream.h>
+void main()
+{
+  int a,b,s,d,p,r,c;
+  float q;
+  cout<<"ENTER THE FIRST NUMBER"<<endl;
+  cin>>a;
+  cout<<"ENTER SECOND NUMBER"<<endl;
+  cin>>b;
+  cout<<"Press:\n\"1\" to add \n\"2\" to subtract \n\"3\" to multiply \n\"4\" to divide"<<endl;
+  cout<<"Enter your choice"<<endl;
+  cin>>c;
+  if(c==1)
+		  {
+			s=a+b;
+			cout<<"sum of "<<a<<" and "<<b<<" is "<<s<<endl;
+		  }
+  else
+		if(c==2)
+			 {
+				d=a-b;
+				cout<<"Diff of "<<a<<" and "<<b<<" is "<<d<<endl;
+			 }
+		else
+			 if(c==3)
+				 {
+				  p=a*b;
+				  cout<<"Product of "<<a<<" and "<<b<<" is "<<p<<endl;
+				  }
+			 else
+				  if(c==4)
+						 {
+						  q=(float)a/b;
+						  cout<<"Quoitient of "<<a<<" and "<<b<<" is "<<q<<endl;
+						 }
+				  else
+			        cout<<"PLEASE RECHECK YOUR CHOICE";
+
+}

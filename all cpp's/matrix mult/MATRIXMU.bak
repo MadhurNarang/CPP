@@ -1,0 +1,85 @@
+#include<iostream.h>
+#include<conio.h>
+void print(int a[][10],int b[][10],int c[][10],int l,int m,int n,int o)
+{
+ clrscr();
+ int i,j;
+ cout<<"\nMATRIX 1 ENTERED IS:  \n";
+ for(i=0;i<l;i++)
+  {
+	 cout<<"| ";
+	 for(j=0;j<m;j++)
+		{
+		 cout<<a[i][j]<<" ";
+		}
+	 cout<<"|"<<endl;
+	 }
+ cout<<"\nMATRIX 2 ENTERED IS:  \n";
+ for(i=0;i<n;i++)
+  {
+	cout<<"| ";
+	for(j=0;j<o;j++)
+	{
+	 cout<<b[i][j]<<" ";
+	}
+	cout<<"|"<<endl;
+  }
+ cout<<"\nMULTIPLIED MATRIX IS:  \n";
+ for(i=0;i<l;i++)
+  {
+	cout<<"| ";
+	for(j=0;j<o;j++)
+	{
+	 cout<<c[i][j]<<" ";
+	}
+	cout<<"|"<<endl;
+  }
+
+}
+void main()
+{
+  int a[10][10],b[10][10],c[10][10],l,m,i,j,n,o,k,q=0;
+  cout<<"ENTER NUMBER OF ROWS FOR MATRIX 1   ";
+  cin>>l;
+  cout<<"ENTER NUMBER OF COLUMNS FOR MATRIX 1   ";
+  cin>>m;
+  cout<<"ENTER THE ELEMENTS\n";
+  for(i=0;i<l;i++)
+  {
+	for(j=0;j<m;j++)
+	{
+	 cin>>a[i][j];
+	}
+  }
+  cout<<"ENTER NUMBER OF ROWS FOR MATRIX 2   ";
+  cin>>n;
+  cout<<"ENTER NUMBER OF COLUMNS FOR MATRIX 2   ";
+  cin>>o;
+  cout<<"ENTER THE ELEMENTS\n";
+  for(i=0;i<n;i++)
+  {                                            
+	for(j=0;j<o;j++)
+	{
+	 cin>>b[i][j];
+	}
+  }
+  if(m==n)
+	{
+	  for(i=0;i<l;i++)
+	  {
+		for(j=0;j<o;j++)
+		{
+		  for(k=i;k<m;k++)
+			 {
+				q+=a[i][k]*b[k][j];
+			 }
+		  c[i][j]=q;
+		  q=0;
+		}
+	  }
+	 print(a,b,c,l,m,n,o);
+	}
+  else
+	cout<<"MATRIX CANT BE MULTIPLIED";
+}
+

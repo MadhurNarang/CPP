@@ -1,0 +1,33 @@
+#include<iostream.h>
+void main()
+{
+ int a[10][10],r,c,,sum=0,s[10],f,i;
+ cout<<"ENTER NO OF ROWS<10  ";
+ cin>>r;
+ cout<<"ENTER NO OF columns<10  ";
+ cin>>c;
+ cout<<"NOW INPUT 2D ARRAY\n";
+ for( i=0;i<r;i++)
+  {
+  for( f=0;f<c;f++)
+  {cin>>a[i][f];}
+  }
+
+  cout<<"\nARRAY 1 ENTERED  IS\n";
+  for(i=0;i<r;i++)
+  {
+  for(f=0;f<c;f++)
+  {cout<<a[i][f]<<" ";}cout<<endl;
+  }
+  cout<<"\nCOLUMN SUM IS\n";
+  for(f=0;f<c;f++)
+  {
+  for(i=0;i<r;i++)
+  {
+	sum+=a[i][f];
+  }
+  s[f]=sum;
+  cout<<"\nSUM OF NO IN COLUMN "<<f+1<<" is"<<s[f]<<"\n";
+  sum=0;
+  }
+}

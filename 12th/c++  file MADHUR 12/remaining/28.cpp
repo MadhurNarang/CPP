@@ -1,0 +1,50 @@
+//IMPLEMENTATION OF CLASS
+#include<iostream.h>
+#include<stdio.h>
+class student
+{
+  int roll;
+  char nam[50];
+  float eng,mat,sci,per;
+ public:
+  void ent()
+  {
+	cout<<"ENTER ROLL NUMBER\t";
+	cin>>roll;
+	cout<<"ENTER THE NAME\t";
+	gets(nam);
+	cout<<"ENTER MARKS IN ENGLISH MATHS AND SCIENCE\n";
+	cin>>eng>>mat>>sci;
+  }
+  void calc()
+  {
+	per=(eng+mat+sci)/3;
+  }
+  void display()
+  {
+	cout<<"\n-----------------------";
+	cout<<"\nROLL NUMBER\t";
+	cout<<roll;
+	cout<<"\nNAME\t\t";
+	cout<<nam;
+	cout<<"\nPERCENTAGE\t";
+	cout<<per;
+	cout<<"\n--------------------------";
+  }
+};
+void main()
+{
+ student x[5];
+ int i;
+ for(i=0;i<3;i++)
+ {
+  x[i].ent();
+  x[i].calc();
+ }
+ cout<<"\nTHE DETAILS ARE:\n";
+ for(i=0;i<3;i++)
+ x[i].display();
+}
+
+
+

@@ -1,0 +1,15 @@
+#include<iostream.h>
+#define sum(a,b) a+b
+#define dif(a,b) a-b
+#define pro(a,b) a*b
+#define quo(a,b) a/b
+void main()
+{
+ float no1,no2;
+ cout<<"ENTER THE NUMBERS  \n";
+ cin>>no1>>no2;
+ cout<<"SUM OF NUMBERS  "<<sum(no1,no2);
+ cout<<"\nDIF OF NUMBERS  "<<dif(no1,no2);
+ cout<<"\nPRO OF NUMBERS  "<<pro(no1,no2);
+ cout<<"\nQUO OF NUMBERS  "<<(float)quo(no1,no2);
+}

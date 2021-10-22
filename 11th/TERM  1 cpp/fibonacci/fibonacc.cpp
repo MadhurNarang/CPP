@@ -1,0 +1,17 @@
+#include<iostream.h>
+void main()
+{
+ int a=0,b=1,c,n,i,s=1;
+ cout<<"ENTER THE NO OF TERMS";
+ cin>>i;
+ cout<<a<<b;
+ for(n=1;n<=i-2;n++)
+ { c=a+b;
+	s+=c;
+  cout<<c<<" ";
+
+	a = b;
+	b=c;
+
+ }cout<<"\n SUM of all terms IS :"<<s;
+}

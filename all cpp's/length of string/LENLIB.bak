@@ -1,0 +1,12 @@
+//COUNT CHARACTERS USING LIBRARY FUNCTIONS
+#include<iostream.h>
+#include<string.h>
+#include<stdio.h>
+void main()
+{
+ char c[50],len;
+ cout<<"ENTER THE STRING \n";
+ gets(c);
+ len=strlen(c);
+ cout<<"NUMBER OF CHARACTERS IN STRING IS "<<len;
+}

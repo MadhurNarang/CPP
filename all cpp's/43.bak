@@ -1,0 +1,77 @@
+//STACK USING LINKED LIST
+#include<iostream.h>
+struct node
+{
+ int roll;
+node*link;
+};
+class stack
+{
+ node *top;
+public:
+stack()
+{
+ top=NULL;
+}
+void push(),pop(),disp();
+};
+void stack::push()
+{
+node *tmp=new node;
+cout<<"\nENTER THE ELEMENT TO INSERT\t";
+cin>>tmp->roll;
+tmp->link=NULL;
+if(top==NULL)
+top=tmp;
+else
+{
+tmp->link=top;
+top=tmp;
+}
+}
+void stack::pop()
+{
+if(top==NULL)
+cout<<"STACK UNDERFLOW";
+else
+ {
+ node *tmp=top;
+top=tmp->link;
+delete tmp;
+cout<<"\nELEMENT DELETED";
+}
+}
+void stack::disp()
+{
+if(top==NULL)
+cout<<"STACK UNDERFLOW";
+else
+{
+cout<<"\nTHE STACK IS ";
+node *tmp=top;
+while(tmp!=NULL)
+{
+cout<<tmp->roll<<'\t';
+tmp=tmp->link;
+}
+}
+}
+void main()
+{
+int c;
+char ch;
+stack s;
+do {
+cout<<"ENTER \n1 TO INSERT\n2 TO DELETE\n3 TO DISPLAY \t";
+cin>>c;
+switch(c)
+{
+case 1: s.push();break;
+case 2: s.pop();break;
+case 3: s.disp();break;
+default: cout<<"\nINVALID ENTRY";break;
+}
+cout<<"\nDO YOU WANT TO CONTINUE Y/N\t";
+cin>>ch;
+}while((ch=='y')||(ch=='Y'));
+}

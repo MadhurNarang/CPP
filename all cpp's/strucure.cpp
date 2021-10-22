@@ -1,0 +1,38 @@
+//IMPLEMENTATION OF STRUCTURE
+#include<iostream.h>
+#include<string.h>
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+struct student
+{
+ int rollno;
+ char name[25];
+ float eng,maths,science,avg;
+};
+
+void main()
+{
+ student a;
+ cout<<"ENTER NAME OF STUDENT "<<'\n';
+ gets(a.name);
+ cout<<"ENTER ROLL NO OF STUDENT "<<'\n';
+ cin>>a.rollno;
+ cout<<"ENTER ENGLISH MARKS OF STUDENT "<<'\n';
+ cin>>a.eng;
+ cout<<"ENTER MATHS MARKS OF STUDENT "<<'\n';
+ cin>>a.maths;
+ cout<<"ENTER SCIENCE MARKS OF STUDENT "<<'\n';
+ cin>>a.science;
+ a.avg=(a.eng+a.maths+a.science)/3;
+
+ cout<<"\n\nENTERED DETAILS ARE :  \n";
+ cout<<"ROLL NO     NAME       ENG     MATHS   SCIENCE   AVERAGE\n";
+ cout<<"-------     ----       ---     -----   -------   -------\n";
+ cout<<"  "<<a.rollno<<"\t  ";
+ cout<<a.name<<"\t";
+ cout<<a.eng<<"\t";
+ cout<<a.maths<<"\t ";
+ cout<<a.science<<"\t  ";
+ cout<<a.avg<<"\n";
+}

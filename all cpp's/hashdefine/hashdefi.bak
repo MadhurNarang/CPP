@@ -1,0 +1,13 @@
+#include<iostream.h>
+#define pi 3.14
+void main()
+{
+	int r;
+	float ar,cir;
+	cout<<"ENTER THE RADIUS OF CIRCLE ";
+	cin>>r;
+	ar=pi*r*r;
+	cir=2*pi*r;
+	cout<<"AREA OF CIRCLE IS  "<<ar;
+	cout<<"CIRCUMFERENCE OF CIRCLE IS  "<<cir;
+}

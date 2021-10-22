@@ -1,0 +1,51 @@
+//PROGRAM TO READ AND WRITE IN TEXT DATA FILE
+#include<fstream.h>
+#include<stdio.h>
+void writefile()
+{
+ ofstream a("TEXT1.txt",ios::out);
+char ch[80];
+cout<<"ENTER TEXT TO WRITE IN DATA FILE\n";
+gets(ch);
+a<<ch;
+a.close();
+}
+void readfile()
+{
+  ifstream v("TEXT1.txt",ios::in);
+char c;
+if(!v)
+  cout<<"\nFILE DOESN'T EXIST";
+else
+{
+  cout<<"\nTHE FILE HAS THE FOLLOWING  TEXT\n";
+while(!v.eof())
+{
+v.get(c);
+cout<<c;
+}
+}
+v.close();
+};
+void main()
+{
+  int n;
+char t;
+do{
+			cout<<"ENTER \n1 TO WRITE IN FILE\n2 TO READ FILE\n";
+cin>>n;
+switch(n)
+{
+  case 1: writefile();
+					  break;
+case 2: readfile();
+					  break;
+default: cout<<"\nWRONG INPUT";
+					  break;
+}
+cout<<"\nDO YOU WANT TO CONTINUE  y/n\n";
+cin>>t;
+}while((t=='y')||(t=='Y'));
+}
+
+

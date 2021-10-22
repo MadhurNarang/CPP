@@ -1,0 +1,21 @@
+//PROGRAM TO COUNT NO OF WORDS
+#include<fstream.h>
+#include<stdio.h>
+void main()
+{
+  ofstream a("TEXT1.txt",ios::out);
+  char ch[100],c[50];
+int i=0;
+cout<<"ENTER THE TEXT TO WRITE IN DATA FILE:\n";
+gets(ch);
+a<<ch;
+a.close();
+ifstream v("TEXT1.txt",ios::in);
+while(!v.eof())
+{
+v>>c;
+ i++;
+}
+cout<<"\nTHERE ARE "<<i<<" WORDS ";
+v.close();
+}

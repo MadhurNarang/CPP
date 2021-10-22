@@ -1,0 +1,23 @@
+//COMPARE,CONCATENATE USING LIBRARY FUNCTIONS
+#include<stdio.h>
+#include<iostream.h>
+#include<string.h>                                      //HEADER FILES INCLUDED
+void main()
+{
+ char str1[100],str2[100];                                    //STRINGS DECALRED
+ int i,j,m;
+ cout<<"ENTER THE FIRST STRING ";
+ gets(str1);                                         //INITIALISING THE STRINGS
+ cout<<"ENTER THE SECOND STRING ";
+ gets(str2);
+ i=strlen(str1);
+ j=strlen(str2);
+ if(strcmp(str1,str2)==0)                                   //COMPARING STRINGS
+	 cout<<"\nSTRINGS ARE EQUAL";
+ else
+	 cout<<"\nSTRINGS ARE NOT EQUAL";                         //RESULT OF COMPARISON
+ strcat(str1,str2);
+ cout<<"\n\nCONCATENATED STRING IS ";
+ puts(str1);                                   //DISPLAYING CONCATENATED STRING
+}
+

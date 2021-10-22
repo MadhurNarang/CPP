@@ -1,0 +1,41 @@
+#include<iostream.h>
+void main()
+{
+  int a,b,c,s,d,p;
+  float q;
+  cout<<"ENTER THE NUMBERS"<<endl;
+  cin>>a>>b;
+  cout<<"ENTER YOUR CHOICE";
+  cin>>c;
+  s=a+b;
+  d=a-b;
+  p=a*b;
+  q=(float)a/b;
+  switch(c)
+  {
+	 case 1:cout<<"SUM IS"<<s;
+	 break;
+	 case 2:cout<<"DIFF IS"<<d;
+	 break;
+	 case 3:cout<<"PROD IS"<<p;
+	 break;
+	 case 4:cout<<"QUOT IS"<<q;
+	 break;
+	 default:cout<<"PLEASE$ CHECK YOUR CHOICE";
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

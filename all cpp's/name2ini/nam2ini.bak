@@ -1,0 +1,30 @@
+//MODIFIED NAME INITIALS
+#include<iostream.h>
+#include<string.h>
+#include<stdio.h>
+#include<ctype.h>
+void  main()
+{
+	int i,k=0,len,q;
+	char c[100],j;
+	cout<<"ENTER THE NAME  :";
+	gets(c);
+	len=strlen(c);
+	for(i=0;i<len+1;i++)
+	 {
+		 if(c[i]==' ')
+			 {
+				j=toupper(c[k]);
+				cout<<j<<".";
+				k=i+1;
+			 }
+		  if(c[i]=='\0')
+			 {
+				for(q=k;q<len;q++)
+				  {
+				   j=toupper(c[q]);
+					cout<<j;
+				  }
+			 }
+	 }
+}
