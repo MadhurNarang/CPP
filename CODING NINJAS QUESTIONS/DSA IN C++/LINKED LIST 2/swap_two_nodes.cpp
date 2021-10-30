@@ -46,43 +46,6 @@ void printnode(node *head)
     }
     return;
 }
-/*
-node *swapnodes(node *head, int i, int j)
-{
-    node *firstele = NULL, *secondele = NULL, *temp,*headtemp=head;
-    if (i == 0)
-    {
-        firstele = head;
-    }
-    if(j==0)
-    {
-        secondele = head;
-    }
-    j--;
-    i--;
-    while(head!=NULL)
-    {
-        if(i==0&&firstele==NULL)
-        {
-            firstele = head->next;
-        }
-        if(j==0&&secondele==NULL)
-        {
-            secondele = head->next;
-        }
-        if(i==0 && j==0)
-        {
-            break;
-        }
-        i--;
-        j--;
-        head = head->next;
-    }
-    temp = firstele->next;
-    firstele->next = secondele->next;
-    secondele->next = temp;
-    return 
-}*/
 
 node *swapnodes(node *head,int i,int j)
 {
