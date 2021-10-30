@@ -47,9 +47,9 @@ void printnode(node *head)
     return;
 }
 
-bool nodecheck(node * head)
+bool nodecheck(node * temp)
 {
-    if(head!=NULL)
+    if(temp!=NULL)
     {
         return false;
     }
