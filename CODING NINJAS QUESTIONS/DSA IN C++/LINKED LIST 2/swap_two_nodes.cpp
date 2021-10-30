@@ -46,7 +46,7 @@ void printnode(node *head)
     }
     return;
 }
-
+/*
 node *swapnodes(node *head, int i, int j)
 {
     node *firstele = NULL, *secondele = NULL, *temp,*headtemp=head;
@@ -82,6 +82,76 @@ node *swapnodes(node *head, int i, int j)
     firstele->next = secondele->next;
     secondele->next = temp;
     return 
+}*/
+
+node *swapnodes(node *head,int i,int j)
+{
+    node *prevnode1,*prevnode2,*currnode1,*currnode2,*temp=head,*newhead=head,*tempcurrnodenext;
+    int diff = j-i;
+    if(i==j)
+    {
+        return head;
+    }
+    if(i==0)
+    {
+        prevnode1=NULL;
+        currnode1=head;
+    }
+    if(j==0)
+    {
+        prevnode2=NULL;
+        currnode2=head;
+    }
+    while((i!=0||j!=0)&&(temp->next!=NULL))
+    {
+        if(i!=0)
+        {
+            currnode1=temp->next;
+            prevnode1=temp;
+            i--;
+        }
+        if(j!=0)
+        {
+            currnode2=temp->next;
+            prevnode2=temp;
+            j--;
+        }
+        temp=temp->next;
+    }
+    if(i!=0||j!=0)
+    {
+        return head;
+    }
+    else
+    {
+        if(prevnode1!=NULL)
+        {
+            prevnode1->next=currnode2;
+        }
+        tempcurrnodenext=currnode2->next;
+        if(diff==1)
+        {
+            currnode2->next=currnode1;
+        }
+        else
+            currnode2->next=currnode1->next;
+
+        if(prevnode2!=NULL)
+        {
+            prevnode2->next=currnode1;
+        }
+        currnode1->next=tempcurrnodenext;
+    }
+    if(prevnode1==NULL)
+    {
+        newhead=currnode2;
+    }
+    else if(prevnode2==NULL)
+    {
+        newhead=currnode1;
+    }
+
+    return newhead;
 }
 
 int main()
@@ -93,7 +163,10 @@ int main()
         node *head = takeinput();
         int i, j;
         cin >> i >> j;
-        head = swapnodes(head, i, j);
+        if(i<j)
+            head = swapnodes(head, i, j);
+        else 
+            head=swapnodes(head,j,i);
         printnode(head);
         t--;
     }
