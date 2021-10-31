@@ -81,14 +81,20 @@ node *k_rev(node *head, int k)
         lasthead = head;
         for (int i=1; i < k; i++)
         {
-            if (nodecheck(head))
+            if (nodecheck(head) == true)
             {
-                temp=reverselist(lasthead, NULL);
+                temp=reverselist(lasthead, head);
                 newtail->next=temp;
                 return newhead;
             }
             head = head->next;
         }
+        if (nodecheck(head) == true)
+            {
+                temp=reverselist(lasthead, head);
+                newtail->next=temp;
+                return newhead;
+            }
         lasttail = head;
         head=head->next;
         if (newhead == NULL)
@@ -116,6 +122,7 @@ int main()
         cin >> k;
         head = k_rev(head, k);
         printnode(head);
+        cout<<endl;
         t--;
     }
     return 0;
