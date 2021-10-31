@@ -47,54 +47,60 @@ void printnode(node *head)
     return;
 }
 
-node * reverselist(node *head,node *tail = NULL)
+node *reverselist(node *head, node *tail)
 {
-    node * temp =head;
-    node*prevadd=NULL,*currnext;
-    while(temp!=tail)
+    node *temp = head;
+    node *prevadd = NULL, *currnext;
+    while (temp != tail)
     {
-        currnext=temp->next;
-        temp->next=prevadd;
-        prevadd=temp;
-        temp=currnext;
+        currnext = temp->next;
+        temp->next = prevadd;
+        prevadd = temp;
+        temp = currnext;
     }
     return prevadd;
 }
 
-bool nodecheck(node * temp)
+bool nodecheck(node *temp)
 {
-    if(temp!=NULL)
+    if (temp != NULL)
     {
         return false;
     }
-    else 
+    else
     {
         return true;
     }
 }
 
-node *k_rev(node *head,int k)
+node *k_rev(node *head, int k)
 {
-    node * swaphead=head,*swaptail=NULL,*newhead=NULL,*newtail=NULL;
-    while(nodecheck(head)==false)
+    node *lasthead = head, *lasttail = NULL, *newhead = NULL, *newtail = NULL, *tempnext;
+    while (nodecheck(head) == false)
     {
-        for(int i=1;i<k;i++)
+        lasthead = head->next;
+        head = head->next;
+        for (int i = 1; i < k; i++)
         {
-            if(nodecheck(head))
+            if (nodecheck(head))
             {
-                
+                lasttail = reverselist(lasttail->next, NULL);
+                lasthead->next = lasthead;
+                return newhead;
             }
-            head=head->next;
+            head = head->next;
         }
-        swaptail=head->next;
-        newtail=head;
-        if(newhead==NULL)
+        lasttail = head;
+        tempnext = lasttail->next;
+        if (newhead == NULL)
         {
-            newhead=reverselist(swaphead,swaptail);
+            newhead = reverselist(lasthead, lasttail->next);
+            lasthead->next = tempnext;
         }
         else
         {
-            newtail->next=reverselist(swaphead,swaptail);
+            reverselist(lasthead, lasttail->next);
+            lasthead->next = tempnext;
         }
     }
     return newhead;
@@ -108,8 +114,8 @@ int main()
     {
         node *head = takeinput();
         int k;
-        cin>>k;
-        head=k_rev(head,k);
+        cin >> k;
+        head = k_rev(head, k);
         printnode(head);
         t--;
     }
