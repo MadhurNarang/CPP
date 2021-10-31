@@ -63,7 +63,7 @@ node *reverselist(node *head, node *tail)
 
 bool nodecheck(node *temp)
 {
-    if (temp != NULL)
+    if (temp!= NULL)
     {
         return false;
     }
@@ -75,33 +75,32 @@ bool nodecheck(node *temp)
 
 node *k_rev(node *head, int k)
 {
-    node *lasthead = head, *lasttail = NULL, *newhead = NULL, *newtail = NULL, *tempnext;
+    node *lasthead = head, *lasttail = NULL, *newhead = NULL, *newtail = head,*temp;
     while (nodecheck(head) == false)
     {
-        lasthead = head->next;
-        head = head->next;
-        for (int i = 1; i < k; i++)
+        lasthead = head;
+        for (int i=1; i < k; i++)
         {
             if (nodecheck(head))
             {
-                lasttail = reverselist(lasttail->next, NULL);
-                lasthead->next = lasthead;
+                temp=reverselist(lasthead, NULL);
+                newtail->next=temp;
                 return newhead;
             }
             head = head->next;
         }
         lasttail = head;
-        tempnext = lasttail->next;
+        head=head->next;
         if (newhead == NULL)
         {
             newhead = reverselist(lasthead, lasttail->next);
-            lasthead->next = tempnext;
         }
         else
         {
-            reverselist(lasthead, lasttail->next);
-            lasthead->next = tempnext;
+            temp=reverselist(lasthead, lasttail->next);
+            newtail->next=temp;
         }
+        newtail=lasthead;
     }
     return newhead;
 }
