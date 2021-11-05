@@ -90,18 +90,34 @@ int main()
 {
     stack s;
 
-    s.push(100);
-    s.push(101);
-    s.push(102);
-    s.push(103);
-    s.push(104);
-    s.push(105);
-    s.push(106);
-
-    cout<<s.pop()<<endl;
-    cout<<s.top()<<endl;
-    cout<<s.isempty()<<endl;
-    cout<<s.getsize()<<endl;
-    
+    int q,t,ele;
+    cin>>q;
+    while(q>0)
+    {
+        cin>>t;
+        switch(t)
+        {
+            case 1 :
+                    cin>>ele;
+                    s.push(ele);
+                    break;
+            case 2 :
+                    cout<<s.pop();
+                    break;
+            case 3 :
+                    cout<<s.top();
+                    break;
+            case 4 :
+                    cout<<s.getsize();
+                    break;
+            case 5 :
+                    if(s.isempty())
+                        cout<<"TRUE";
+                    else
+                        cout<<"FALSE";
+                    break;
+        }
+        q--;
+    }
     return 0;
 }
