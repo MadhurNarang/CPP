@@ -15,6 +15,7 @@ class node
         this->next=NULL;
     }
 };
+
 template<typename Q>
 class stack
 {
