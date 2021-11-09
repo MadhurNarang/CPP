@@ -63,7 +63,7 @@ int main()
     while (t > 0)
     {
         cin >> q;
-        cout << reversebrackets(q);
+        cout << reversebrackets(q)<<endl;
         t--;
     }
 }
