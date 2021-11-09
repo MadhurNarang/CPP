@@ -25,6 +25,26 @@ void stockspan(int arr1[], int arr2[], int n) // O(n)
         {
             while (arr1[s1.top()] < arr1[i])
             {
+                s1.pop();
+                if (s1.empty() == 1)
+                {
+                    break;
+                }
+            }
+            if (s1.empty() == 1) // this method can be done without extra space
+            {
+                arr2[i] = i + 1;
+            }
+            else
+            {
+                arr2[i] = i - s1.top();
+            }
+            s1.push(i);
+
+            /*
+            //this method cant be done without extra array
+            while (arr1[s1.top()] < arr1[i])
+            {
                 if (s1.empty() == 1)
                 {
                     break;
@@ -38,6 +58,7 @@ void stockspan(int arr1[], int arr2[], int n) // O(n)
             }
             s1.push(i);
             arr2[i] = i - temp + arr2[temp];
+            */
         }
     }
 }
