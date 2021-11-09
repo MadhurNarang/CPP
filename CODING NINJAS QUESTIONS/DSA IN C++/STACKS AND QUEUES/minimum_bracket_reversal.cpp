@@ -5,7 +5,7 @@ using namespace std;
 
 int reversebrackets(string q)
 {
-    int i = 0;
+    int i = 0,rev=0;
     stack<char> s;
     while (q[i] != '\0')
     {
@@ -25,16 +25,34 @@ int reversebrackets(string q)
             }
             else
             {
-                return false;
+                s.push('{');
+                rev++;
             }
         }
         i++;
     }
+
+    while(s.size()>1)
+    {
+        if(s.top()=='{')
+        {
+            s.pop();
+            if(s.top()=='{')
+            {
+                s.pop();
+            }
+            rev++;
+        }
+    }
+
     if (!s.empty())
     {
-        return false;
+        return -1;
     }
-    return true;
+    else
+    {
+        return rev;
+    }
 }
 
 int main()
