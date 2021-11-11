@@ -49,37 +49,32 @@ void printnode(node *head)
 
 node * nextnum(node * head,node * prevhead)
 {
-    if(head==NULL)
-    {
-        return head;
-    }
-
-    node * nextnode=nextnum(head->next,prevhead);
-    if(nextnode!=NULL)
-    {
-        if(nextnode->data==0)
-        {
-            if(head->data==9)
-            {
-                head->data=0;
-                if(head==prevhead)
-                {
-                    node * newnode=new node(1);
-                    newnode->next=head;
-                    head=newnode;
-                }
-            }
-            else
-                head->data+=1;
-        }
-    }
-    else
+    if(head->next==NULL)
     {
         if(head->data==9)
         {
             head->data=0;
         }
         else 
+            head->data+=1;
+        return head;
+    }
+
+    node * nextnode=nextnum(head->next,prevhead);
+
+    if(nextnode->data==0 && nextnode->next==NULL)
+    {
+        if(head->data==9)
+        {
+            head->data=0;
+            if(head==prevhead)
+            {
+                node * newnode=new node(1);
+                newnode->next=head;
+                head=newnode;
+            }
+        }
+        else
             head->data+=1;
     }
     return head;
