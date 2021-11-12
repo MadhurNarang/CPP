@@ -49,21 +49,21 @@ void printnode(node *head)
 
 node * nextnum(node * head,node * prevhead)
 {
-    if(head->next==NULL)
+    if(head==NULL)
     {
-        if(head->data==9)
-        {
-            head->data=0;
-        }
-        else 
-            head->data+=1;
+        //return new node(0);
         return head;
     }
+    
+    int temp;
+    if(head->next!=NULL)
+        temp = head->next->data;
+    //else temp=-1;
 
-    node * nextnode=nextnum(head->next,prevhead);
+    node * nextnode = nextnum(head->next,prevhead);
 
-    if(nextnode->data==0 && nextnode->next==NULL)
-    {
+    if((head->next==NULL)||(nextnode->data!=temp && nextnode->data == 0 ))    //HERE ORDER OF CONDITION MATTERS SINCE IF FIRST STATEMENT IS TRUE THEN SECOND WILL NOT BE TAKEN CARE OF .......SINCE FOR OR IF ONE IS TRUE THEN WHOLE CONDISTION IS AUTOMATICALLY TRUE
+    {                                                                           // THIS IS DONE BECAUSE WE CANT DO nextnode->data when nextnode is NULL .....it will give segmentationfault
         if(head->data==9)
         {
             head->data=0;

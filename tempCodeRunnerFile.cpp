@@ -51,35 +51,29 @@ node * nextnum(node * head,node * prevhead)
 {
     if(head==NULL)
     {
-        return head;
+        return new node(0);
     }
+    
+    int temp;
+    if(head->next!=NULL)
+        temp = head->next->data;
+    else temp=-1;
 
-    node * nextnode=nextnum(head->next,prevhead);
-    if(nextnode!=NULL)
-    {
-        if(nextnode->data==0)
-        {
-            if(head->data==9)
-            {
-                head->data=0;
-                if(head==prevhead)
-                {
-                    node * newnode=new node(1);
-                    newnode->next=head;
-                    head=newnode;
-                }
-            }
-            else
-                head->data+=1;
-        }
-    }
-    else
+    node * nextnode = nextnum(head->next,prevhead);
+
+    if(nextnode->data!=temp && nextnode->data == 0)
     {
         if(head->data==9)
         {
             head->data=0;
+            if(head==prevhead)
+            {
+                node * newnode=new node(1);
+                newnode->next=head;
+                head=newnode;
+            }
         }
-        else 
+        else
             head->data+=1;
     }
     return head;
