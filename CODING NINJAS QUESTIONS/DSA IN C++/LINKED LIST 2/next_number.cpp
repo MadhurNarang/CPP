@@ -89,6 +89,7 @@ int main()
         node *head = takeinput();
         head= nextnum(head,head);
         printnode(head);
+        cout<<endl;
         t--;
     }
     return 0;
