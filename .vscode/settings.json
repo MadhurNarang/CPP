@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "TRANSL~1.C": "cpp"
+        "TRANSL~1.C": "cpp",
+        "iostream": "cpp",
+        "ostream": "cpp"
     }
 }
