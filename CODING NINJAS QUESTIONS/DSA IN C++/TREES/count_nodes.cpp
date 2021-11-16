@@ -81,7 +81,5 @@ int main()
 
     cout << countnodes(root) << endl;
 
-    printtree(root);
-
     return 0;
 }
