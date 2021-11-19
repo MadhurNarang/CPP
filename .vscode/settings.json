@@ -2,6 +2,8 @@
     "files.associations": {
         "TRANSL~1.C": "cpp",
         "iostream": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "array": "cpp",
+        "string": "cpp"
     }
 }
