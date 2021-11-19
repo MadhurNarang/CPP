@@ -1,7 +1,7 @@
 #include <iostream>
 #include "tree_node.h"
 #include <queue>
-#include<climits>
+#include <climits>
 
 treenode<int> *inputtree()
 {
@@ -66,6 +66,7 @@ void printtree(treenode<int> *root)
     }
 }
 
+/*
 treenode<int> *  maxchildsum(treenode<int> * root)
 {
     if(root==NULL)
@@ -86,7 +87,7 @@ treenode<int> *  maxchildsum(treenode<int> * root)
         treenode<int> * smallmax = maxchildsum(root->children.at(i));
 
         int smallsum=smallmax->data;
-        for(int i=0;i<smallmax->children.size();i++)
+        for(int i=0;i<smallmax->children.size();i++)  //this is extra part...it is being done twice
         {
             smallsum+=smallmax->children.at(i)->data;
         }
@@ -97,6 +98,59 @@ treenode<int> *  maxchildsum(treenode<int> * root)
         }
     }
     return ansmax;
+}
+*/
+
+class max_child_ans
+{
+public:
+    int sum;
+    treenode<int> *node;
+
+    max_child_ans(treenode<int> *root, int sum)
+    {
+        node = root;
+        this->sum = sum;
+    }
+};
+
+max_child_ans maxchildsumclass(treenode<int> *root)
+{
+    treenode<int> *maxsumnode = root;
+    int maxsum;
+
+    int sum = root->data;
+    for (int i = 0; i < root->children.size(); i++)
+    {
+        sum += root->children.at(i)->data;
+    }
+
+    maxsum = sum;
+
+    for (int i = 0; i < root->children.size(); i++)
+    {
+        max_child_ans smallansclass = maxchildsumclass(root->children.at(i));
+
+        if (sum < smallansclass.sum)
+        {
+            maxsum = smallansclass.sum;
+            maxsumnode = smallansclass.node;
+        }
+    }
+
+    max_child_ans maxclass(maxsumnode, maxsum);
+
+    return maxclass;
+}
+
+treenode<int> *maxchildsum(treenode<int> *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+
+    return maxchildsumclass(root).node;
 }
 
 int main()
