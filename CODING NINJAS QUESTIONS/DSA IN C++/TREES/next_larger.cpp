@@ -66,38 +66,41 @@ void printtree(treenode<int> *root)
     }
 }
 
-treenode<int> * nextlarger(treenode<int>*root,int n)
+treenode<int> *nextlarger(treenode<int> *root, int n)
 {
-    if(root==NULL)
+    if (root == NULL)
     {
         return 0;
     }
 
-    treenode<int> * ans;
+    treenode<int> *ans = root;
 
-    if(root->data>n)
+    if (ans->data < n)
     {
-        ans=root;
-    }
-    else
-    {
-        ans=NULL;
+        ans = NULL;
     }
 
-    for(int i=0;i<root->children.size();i++)
+    for (int i = 0; i < root->children.size(); i++)
     {
-        treenode<int> * smallans = nextlarger(root->children.at(i),n);
-        
-        if(root->children.at(i)->data>n)  //root
+        treenode<int> *smallans = nextlarger(root->children.at(i), n);
+
+        if (smallans == NULL)
         {
-            if(smallans==NULL || root->children.at(i)->data<smallans->data)
-            {
-                ans=root->children.at(i);
-            }
+            continue;
         }
-        else
+
+        if (ans == NULL)
         {
-            ans=smallans;
+            if (smallans->data > n)
+            {
+                ans = smallans;
+            }
+            continue;
+        }
+
+        if (ans->data > smallans->data && n < smallans->data)
+        {
+            ans = smallans;
         }
     }
 
@@ -109,11 +112,11 @@ int main()
     treenode<int> *root = inputtree();
 
     int n;
-    cin>>n;
-    if(nextlarger(root,n)!=NULL)
-        cout << nextlarger(root,n)->data << endl;
+    cin >> n;
+    if (nextlarger(root, n) != NULL)
+        cout << nextlarger(root, n)->data << endl;
     else
-        cout<<"NULL"<<endl;
+        cout << "NULL" << endl;
 
     return 0;
 }
