@@ -98,7 +98,14 @@ secondlargestclass *secondlargest(treenode<int> *root)
         }
         else
         {
-            if (ans->slar->data < smallans->lar->data && ans->lar->data != smallans->lar->data)
+            if (ans->lar->data == smallans->lar->data)
+            {
+                if (ans->slar->data < smallans->slar->data)
+                {
+                    ans->slar = smallans->slar;
+                }
+            }
+            else if (ans->slar->data < smallans->lar->data && ans->lar->data != smallans->lar->data)
             {
                 ans->slar = smallans->lar;
             }
