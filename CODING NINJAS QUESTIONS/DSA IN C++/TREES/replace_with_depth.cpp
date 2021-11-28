@@ -66,15 +66,31 @@ void printtree(treenode<int> *root)
     }
 }
 
-treenode<int> *replacedepth(treenode<int> *root)
+void replacedepth(treenode<int> *root,int depth = 0)
 {
+    if(root==NULL)
+    {
+        return;
+    }
+
+    root->data=depth;
+
+    if(root->children.size()==0)
+    {
+        return;
+    }
+
+    for(int i=0;i<root->children.size();i++)
+    {
+        replacedepth(root->children.at(i),depth+1);
+    }
 }
 
 int main()
 {
     treenode<int> *root = inputtree();
 
-    root = replacedepth(root);
+    replacedepth(root);
 
     printtree(root);
 
