@@ -100,46 +100,62 @@ public:
     }
 };
 
-pair<vector<node *>, int> levelwiselinkedlist(binarytreenode<int> *root)
+void printlinkedlist(node *head)
+{
+    while (head != NULL)
+    {
+        cout << head->data->data << " ";
+        head = head->next;
+    }
+}
+
+vector<node *> levelwiselinkedlist(binarytreenode<int> *root)
 {
     if (root == NULL)
     {
-        pair<vector<node *> ,int> basecase(0,0);
+        vector<node *> basecase;
         return basecase;
     }
 
     queue<binarytreenode<int> *> pendingnodes;
     vector<node *> v;
-    node *head;
-    node *temp;
+    node *head = NULL;
+    node *tail = NULL;
 
     pendingnodes.push(root);
     pendingnodes.push(NULL);
 
-    head=new node(root);
-    temp=head;
-
     while (!pendingnodes.empty())
     {
         binarytreenode<int> *front = pendingnodes.front();
-        temp->next=new node(front);
-        temp=temp->next;
         pendingnodes.pop();
+
+        node *temp = new node(front);
+        if (head == NULL)
+        {
+            head = temp;
+            tail = temp;
+        }
+        else
+        {
+            tail->next = temp;
+            tail = tail->next;
+        }
 
         if (front == NULL)
         {
             v.push_back(head);
-            head=new node(pendingnodes.front());
-            temp=head;
+            head = NULL;
+            tail = NULL;
 
             if (pendingnodes.empty())
             {
-                head=NULL;
-                v.push_back(head);
                 break;
             }
             else
+            {
                 pendingnodes.push(NULL);
+            }
         }
         else
         {
@@ -154,29 +170,24 @@ pair<vector<node *>, int> levelwiselinkedlist(binarytreenode<int> *root)
         }
     }
 
-    pair<vector<node *>,int> ans(v,v.size());
-    
-    return ans;
-}
-
-void printlinkedlist(node *head)
-{
-    while (head != NULL)
+    for (int i = 0; i < v.size(); i++)
     {
-        cout << head->data->data << " ";
-        head = head->next;
+        printlinkedlist(v.at(i));
+        cout << endl;
     }
+
+    return v;
 }
 
 int main()
 {
     binarytreenode<int> *root = inputbinarytree();
 
-    pair<vector<node *>, int> ans = levelwiselinkedlist(root);
+    vector<node *> ans = levelwiselinkedlist(root);
 
-    for (int i = 0; i < ans.second; i++)
+    for (int i = 0; i < ans.size(); i++)
     {
-        printlinkedlist(ans.first[i]);
+        printlinkedlist(ans.at(i));
         cout << endl;
     }
 
