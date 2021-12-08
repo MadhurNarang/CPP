@@ -5,6 +5,11 @@
         "ostream": "cpp",
         "array": "cpp",
         "string": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "string_view": "cpp",
+        "*.tcc": "cpp",
+        "cmath": "cpp",
+        "numeric": "cpp",
+        "cstdlib": "cpp"
     }
 }
