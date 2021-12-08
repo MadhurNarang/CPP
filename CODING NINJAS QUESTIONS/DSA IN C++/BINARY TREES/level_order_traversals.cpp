@@ -1,7 +1,5 @@
 #include <iostream>
 #include <queue>
-#include <math.h>
-#include <stdlib.h>
 using namespace std;
 #include "binary_tree_node.h"
 
@@ -83,39 +81,54 @@ binarytreenode<int> *inputbinarytree()
     return root;
 }
 
-pair<bool, int> checkbalance(binarytreenode<int> *root)
+void levelorder(binarytreenode<int> *root)
 {
     if (root == NULL)
     {
-        pair<bool, int> basecase(true, 0);
-        return basecase;
+        return;
     }
 
-    pair<bool, int> leftans = checkbalance(root->left);
-    pair<bool, int> rightans = checkbalance(root->right);
+    queue<binarytreenode<int> *> pendingnodes;
 
-    bool ans = true;
-    int height;
+    pendingnodes.push(root);
+    pendingnodes.push(NULL);
 
-    if (leftans.first == false || rightans.first == false)
+    while (!pendingnodes.empty())
     {
-        ans = false;
-    }
-    else if (leftans.second - rightans.second >= 2 || leftans.second - rightans.second <= -2)
-    {
-        ans = false;
-    }
-    height = 1 + max(leftans.second, rightans.second);
+        binarytreenode<int> *front = pendingnodes.front();
+        pendingnodes.pop();
 
-    pair<bool, int> smallans(ans, height);
-    return smallans;
+        if (front == NULL)
+        {
+            cout << endl;
+            if(pendingnodes.empty())
+            {
+                break;
+            }
+            else
+                pendingnodes.push(NULL);
+        }
+        else
+        {
+            cout << front->data << " ";
+
+            if (front->left) //(root->left!=NULL)
+            {
+                pendingnodes.push(front->left);
+            }
+            if (front->right) //(root->right!=NULL)
+            {
+                pendingnodes.push(front->right);
+            }
+        }
+    }
 }
 
 int main()
 {
     binarytreenode<int> *root = inputbinarytree();
 
-    cout << checkbalance(root).first << endl;
+    levelorder(root);
 
     delete root;
 }
