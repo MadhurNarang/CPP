@@ -104,35 +104,38 @@ pair<vector<node *>, int> levelwiselinkedlist(binarytreenode<int> *root)
 {
     if (root == NULL)
     {
-        return;
+        pair<vector<node *> ,int> basecase(0,0);
+        return basecase;
     }
 
     queue<binarytreenode<int> *> pendingnodes;
     vector<node *> v;
-    node *head = new node;
-    node *temp = new node;
+    node *head;
+    node *temp;
 
     pendingnodes.push(root);
     pendingnodes.push(NULL);
 
-    head->data = root;
+    head=new node(root);
+    temp=head;
 
     while (!pendingnodes.empty())
     {
         binarytreenode<int> *front = pendingnodes.front();
+        temp->next=new node(front);
+        temp=temp->next;
         pendingnodes.pop();
 
         if (front == NULL)
         {
-            cout << endl;
-            temp->next = new node(front);
             v.push_back(head);
-            head->data = pendingnodes.front();
-            temp = head;
+            head=new node(pendingnodes.front());
+            temp=head;
 
             if (pendingnodes.empty())
             {
-                head->data = null;
+                head=NULL;
+                v.push_back(head);
                 break;
             }
             else
@@ -140,28 +143,27 @@ pair<vector<node *>, int> levelwiselinkedlist(binarytreenode<int> *root)
         }
         else
         {
-            cout << front->data << " ";
-
-            if (front->left) //(root->left!=NULL)
+            if (front->left)
             {
                 pendingnodes.push(front->left);
             }
-            if (front->right) //(root->right!=NULL)
+            if (front->right)
             {
                 pendingnodes.push(front->right);
             }
-
-            temp->data = front;
-            temp = temp->next;
         }
     }
+
+    pair<vector<node *>,int> ans(v,v.size());
+    
+    return ans;
 }
 
 void printlinkedlist(node *head)
 {
     while (head != NULL)
     {
-        cout << head->data << " ";
+        cout << head->data->data << " ";
         head = head->next;
     }
 }
