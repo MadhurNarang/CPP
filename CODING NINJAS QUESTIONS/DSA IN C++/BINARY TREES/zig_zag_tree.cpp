@@ -2,7 +2,6 @@
 #include <queue>
 using namespace std;
 #include "binary_tree_node.h"
-#include <vector>
 
 void printbinarytree(binarytreenode<int> *root)
 {
@@ -82,47 +81,15 @@ binarytreenode<int> *inputbinarytree()
     return root;
 }
 
-class node
-{
-public:
-    binarytreenode<int> *data;
-    node *next;
-
-    node()
-    {
-        this->data = NULL;
-        next = NULL;
-    }
-
-    node(binarytreenode<int> *data)
-    {
-        this->data = data;
-        next = NULL;
-    }
-};
-
-void printlinkedlist(node *head)
-{
-    node *temp = head;
-    while (temp->data != NULL)
-    {
-        cout << temp->data->data << " ";
-        temp = temp->next;
-    }
-}
-
-vector<node *> levelwiselinkedlist(binarytreenode<int> *root)
+void zigzaglevelorder(binarytreenode<int> *root)
 {
     if (root == NULL)
     {
-        vector<node *> basecase;
-        return basecase;
+        return;
     }
 
+    int level = 1;
     queue<binarytreenode<int> *> pendingnodes;
-    vector<node *> v;
-    node *head = NULL;
-    node *tail = NULL;
 
     pendingnodes.push(root);
     pendingnodes.push(NULL);
@@ -132,60 +99,37 @@ vector<node *> levelwiselinkedlist(binarytreenode<int> *root)
         binarytreenode<int> *front = pendingnodes.front();
         pendingnodes.pop();
 
-        node *temp = new node(front);
-        if (head == NULL)
-        {
-            head = temp;
-            tail = temp;
-        }
-        else
-        {
-            tail->next = temp;
-            tail = tail->next;
-        }
-
         if (front == NULL)
         {
-            v.push_back(head);
-            head = NULL;
-            tail = NULL;
-
+            cout << endl;
             if (pendingnodes.empty())
             {
                 break;
             }
             else
-            {
                 pendingnodes.push(NULL);
-            }
         }
         else
         {
-            if (front->left)
+            cout << front->data << " ";
+
+            if (front->left) //(root->left!=NULL)
             {
                 pendingnodes.push(front->left);
             }
-            if (front->right)
+            if (front->right) //(root->right!=NULL)
             {
                 pendingnodes.push(front->right);
             }
         }
     }
-
-    return v;
 }
 
 int main()
 {
     binarytreenode<int> *root = inputbinarytree();
 
-    vector<node *> ans = levelwiselinkedlist(root);
-
-    for (int i = 0; i < ans.size(); i++)
-    {
-        printlinkedlist(ans.at(i));
-        cout << endl;
-    }
+    zigzaglevelorder(root);
 
     delete root;
 }
