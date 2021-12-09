@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <stack>
 using namespace std;
 #include "binary_tree_node.h"
 
@@ -81,7 +82,7 @@ binarytreenode<int> *inputbinarytree()
     return root;
 }
 
-void zigzaglevelorder(binarytreenode<int> *root)
+void zigzagorder_using_two_stacks(binarytreenode<int> *root)
 {
     if (root == NULL)
     {
@@ -89,39 +90,101 @@ void zigzaglevelorder(binarytreenode<int> *root)
     }
 
     int level = 1;
-    queue<binarytreenode<int> *> pendingnodes;
+    stack<binarytreenode<int> *> rightleft;
+    stack<binarytreenode<int> *> leftright;
 
-    pendingnodes.push(root);
-    pendingnodes.push(NULL);
+    rightleft.push(root);
 
-    while (!pendingnodes.empty())
+    while (!rightleft.empty() || !leftright.empty())
     {
-        binarytreenode<int> *front = pendingnodes.front();
-        pendingnodes.pop();
-
-        if (front == NULL)
+        while (!rightleft.empty())
         {
-            cout << endl;
-            if (pendingnodes.empty())
-            {
-                break;
-            }
-            else
-                pendingnodes.push(NULL);
-        }
-        else
-        {
-            cout << front->data << " ";
+            binarytreenode<int> *toprl = rightleft.top();
+            rightleft.pop();
 
-            if (front->left) //(root->left!=NULL)
+            cout << toprl->data << " ";
+
+            if (toprl->left) //THESE STATEMENTS HELP US TO NOT CHECK NULL
             {
-                pendingnodes.push(front->left);
+                leftright.push(toprl->left);
             }
-            if (front->right) //(root->right!=NULL)
+            if (toprl->right) //THESE STATEMENTS HELP US TO NOT CHECK NULL
             {
-                pendingnodes.push(front->right);
+                leftright.push(toprl->right);
             }
         }
+        cout << endl;
+        while (!leftright.empty())
+        {
+            binarytreenode<int> *toplr = leftright.top();
+            leftright.pop();
+
+            cout << toplr->data << " ";
+
+            if (toplr->right) //THESE STATEMENTS HELP US TO NOT CHECK NULL
+            {
+                rightleft.push(toplr->right);
+            }
+            if (toplr->left) //THESE STATEMENTS HELP US TO NOT CHECK NULL
+            {
+                rightleft.push(toplr->left);
+            }
+        }
+        cout << endl;
+    }
+}
+
+void zigzagorder_using_one_stack_one_queue(binarytreenode<int> *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+
+    int order = 1;
+    queue<binarytreenode<int> *> leftright;
+    stack<binarytreenode<int> *> s;
+
+    leftright.push(root);
+
+    while (!s.empty() || !leftright.empty())
+    {
+        while (!leftright.empty())
+        {
+            binarytreenode<int> *frontlr = leftright.front();
+            leftright.pop();
+
+            s.push(frontlr);
+        }
+
+        while (!s.empty())
+        {
+            binarytreenode<int> *top = s.top();
+            s.pop();
+
+            cout << top->data << " ";
+
+            if (order == -1)
+            {
+                if (top->right)
+                {
+                    leftright.push(top->right);
+                }
+            }
+            if (top->left)
+            {
+                leftright.push(top->left);
+            }
+            if (order == 1)
+            {
+                if (top->right)
+                {
+                    leftright.push(top->right);
+                }
+            }
+        }
+        order *= -1;
+        cout << endl;
     }
 }
 
@@ -129,7 +192,9 @@ int main()
 {
     binarytreenode<int> *root = inputbinarytree();
 
-    zigzaglevelorder(root);
+    zigzagorder_using_two_stacks(root);
+    cout << endl;
+    zigzagorder_using_one_stack_one_queue(root);
 
     delete root;
 }
