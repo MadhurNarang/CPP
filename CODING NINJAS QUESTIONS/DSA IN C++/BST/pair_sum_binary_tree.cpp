@@ -103,7 +103,7 @@ bool checkdata(binarytreenode<int> *root, int data)
     return ans;
 }
 
-void pairsum1(binarytreenode<int> *root, int s, binarytreenode<int> *node) //O(n^2)
+void pairsum1(binarytreenode<int> *root, int s, binarytreenode<int> *node) // O(n^2) + tree gets altered with int_min
 {
     if (root == NULL)
     {
@@ -124,11 +124,106 @@ void pairsum1(binarytreenode<int> *root, int s, binarytreenode<int> *node) //O(n
     pairsum1(root->right, s, node);
 }
 
-void pairsum2(binarytreenode<int> *root, int s) //O(nlogn)
+void binarytreetovector(binarytreenode<int> *root, vector<int> *v)
 {
-    vector<int> v = binarytreetovector(root);
-    v = merge_sort(v);
-    pairsum(v);
+    if (root == NULL)
+    {
+        return;
+    }
+
+    v->push_back(root->data);
+    binarytreetovector(root->left, v);
+    binarytreetovector(root->right, v);
+}
+
+void vectorcopy(vector<int> *v1, vector<int> *v2, int si, int ei)
+{
+    int i = 0, j = si;
+    for (; j <= ei;)
+    {
+        v1->at(j++) = v2->at(i++);
+    }
+    return;
+}
+
+void merge(vector<int> *v1, int si, int ei, int mid)
+{
+    vector<int> *v2 = new vector<int>;
+    int i = si, j = mid + 1, k = 0;
+    for (; i <= mid && j <= ei;)
+    {
+        if (v1->at(i) < v1->at(j))
+        {
+            v2->push_back(v1->at(i++));
+            k++;
+        }
+        else
+        {
+            v2->push_back(v1->at(j++));
+            k++;
+        }
+    }
+    while (i <= mid)
+    {
+        v2->push_back(v1->at(i++));
+        k++;
+    }
+    while (j <= ei)
+    {
+        v2->push_back(v1->at(j++));
+        k++;
+    }
+
+    vectorcopy(v1, v2, si, ei);
+    return;
+}
+
+void merge_sort(vector<int> *v, int si, int ei)
+{
+    if (si >= ei)
+    {
+        return;
+    }
+
+    int mid = (si + ei) / 2;
+
+    merge_sort(v, si, mid);
+    merge_sort(v, mid + 1, ei);
+
+    merge(v, si, ei, mid);
+    return;
+}
+
+void findpair(vector<int> *v, int s)
+{
+    for (int i = 0, j = v->size() - 1; i < j;)
+    {
+        if ((v->at(i) + v->at(j)) == s)
+        {
+            cout << v->at(i) << " " << v->at(j) << endl;
+            i++;
+            j--;
+        }
+        else if ((v->at(i) + v->at(j)) > s)
+        {
+            j--;
+        }
+        else
+        {
+            i++;
+        }
+    }
+}
+
+void pairsum2(binarytreenode<int> *root, int s) // O(nlogn)
+{
+    vector<int> *v = new vector<int>;
+
+    binarytreetovector(root, v);
+
+    merge_sort(v, 0, v->size() - 1);
+
+    findpair(v, s);
 }
 
 int main()
@@ -137,10 +232,9 @@ int main()
     int s;
     cin >> s;
 
-    pairsum1(root, s, root);
-    cout << endl
-         << endl;
     pairsum2(root, s);
+    cout << endl;
+    pairsum1(root, s, root);
 
     delete root;
 }
