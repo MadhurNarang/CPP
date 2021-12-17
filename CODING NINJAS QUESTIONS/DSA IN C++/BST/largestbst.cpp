@@ -83,54 +83,69 @@ binarytreenode<int> *inputbinarytree()
     return root;
 }
 
-int lca(binarytreenode<int> *root, int n1, int n2)
+bool checkbst3(binarytreenode<int> *root, int minlimit = INT_MIN, int maxlimit = INT_MAX)
 {
     if (root == NULL)
     {
-        return -1;
+        return true;
     }
 
-    if (root->data == n1 || root->data == n2)
+    if (root->data < minlimit || root->data > maxlimit)
     {
-        return root->data;
+        return false;
     }
 
-    int llca = -1, rlca = -1;
+    bool leftans = checkbst3(root->left, minlimit, root->data - 1);
+    bool rightans = checkbst3(root->right, root->data, maxlimit);
 
-    if (n1 < root->data || n2 < root->data)
+    return (leftans && rightans);
+}
+
+int treeheight(binarytreenode<int> *root)
+{
+    if (root == NULL)
     {
-        llca = lca(root->left, n1, n2);
-    }
-    if (n1 > root->data || n2 > root->data)
-    {
-        rlca = lca(root->right, n1, n2);
+        return 0;
     }
 
-    if (llca == -1 && rlca == -1)
+    int smallheight1 = treeheight(root->left);
+    int smallheight2 = treeheight(root->right);
+
+    if (smallheight1 > smallheight2)
     {
-        return -1;
-    }
-    else if (llca == -1)
-    {
-        return rlca;
-    }
-    else if (rlca == -1)
-    {
-        return llca;
+        return smallheight1 + 1;
     }
     else
     {
-        return root->data;
+        return smallheight2 + 1;
     }
+}
+
+int largestbst(binarytreenode<int> *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+
+    int height = 0;
+
+    if (checkbst3(root))
+    {
+        height = treeheight(root);
+        return height;
+    }
+
+    height = max(height, largestbst(root->left), largestbst(root->right));
+
+    return height;
 }
 
 int main()
 {
     binarytreenode<int> *root = inputbinarytree();
-    int n1, n2;
-    cin >> n1 >> n2;
 
-    cout << lca(root, n1, n2);
+    cout << largestbst(root);
 
     delete root;
 }
