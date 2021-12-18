@@ -121,7 +121,7 @@ int treeheight(binarytreenode<int> *root)
     }
 }
 
-int largestbst(binarytreenode<int> *root)
+int largestbst1(binarytreenode<int> *root) //O(nh)
 {
     if (root == NULL)
     {
@@ -130,22 +130,62 @@ int largestbst(binarytreenode<int> *root)
 
     int height = 0;
 
-    if (checkbst3(root))
+    if (checkbst3(root) == true)
     {
         height = treeheight(root);
         return height;
     }
 
-    height = max(height, largestbst(root->left), largestbst(root->right));
+    height = max(height, max(largestbst1(root->left), largestbst1(root->right)));
 
     return height;
+}
+
+pair<pair<bool, int>, pair<int, int>> largestbst2(binarytreenode<int> *root) //O(n)
+{
+    if (root == NULL)
+    {
+        pair<pair<bool, int>, pair<int, int>> basecase;
+        basecase.first.first = true;
+        basecase.first.second = 0;
+        basecase.second.first = INT_MAX;
+        basecase.second.second = INT_MIN;
+        return basecase;
+    }
+
+    pair<pair<bool, int>, pair<int, int>> leftans, rightans;
+
+    leftans = largestbst2(root->left);
+    rightans = largestbst2(root->right);
+
+    bool ansbool = (root->data > leftans.second.second) && (root->data <= rightans.second.first) && (leftans.first.first) && (rightans.first.first);
+    int ansmax = max(root->data, max(leftans.second.second, rightans.second.second));
+    int ansmin = min(root->data, min(leftans.second.first, rightans.second.first));
+
+    pair<pair<bool, int>, pair<int, int>> ans;
+    ans.first.first = ansbool;
+
+    if (ansbool)
+    {
+        ans.first.second = max(leftans.first.second, rightans.first.second) + 1;
+    }
+    else
+    {
+        ans.first.second = max(leftans.first.second, rightans.first.second);
+    }
+
+    ans.second.first = ansmin;
+    ans.second.second = ansmax;
+
+    return ans;
 }
 
 int main()
 {
     binarytreenode<int> *root = inputbinarytree();
 
-    cout << largestbst(root);
+    cout << largestbst1(root) << endl;
+    cout << largestbst2(root).first.second;
 
     delete root;
 }
