@@ -90,13 +90,14 @@ int replace_with_sum(binarytreenode<int> *root, int passedsum = 0)
         return 0;
     }
 
-    int returnedsum;
+    int returnedsum = root->data;
 
     int rsum = replace_with_sum(root->right, passedsum);
-    root->data += rsum;
-    returnedsum = root->data;
+    root->data = root->data + rsum + passedsum;
     passedsum = root->data;
-    returnedsum += replace_with_sum(root->left, passedsum);
+    int lsum = replace_with_sum(root->left, passedsum);
+
+    returnedsum += rsum + lsum;
 
     return returnedsum;
 }
