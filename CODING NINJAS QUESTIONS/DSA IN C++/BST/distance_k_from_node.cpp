@@ -84,56 +84,18 @@ binarytreenode<int> *inputbinarytree()
     return root;
 }
 
-bool isleaf(binarytreenode<int> *root)
+void distance_from_node(binarytreenode<int> * root,int node,int k)
 {
-    if (root->left == NULL && root->right == NULL)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
-void path_root_to_leaf(binarytreenode<int> *root, int k, vector<int> v = {})
-{
-    if (root == NULL)
-    {
-        return;
-    }
-
-    if (k < 0)
-    {
-        return;
-    }
-
-    v.push_back(root->data);
-
-    if (isleaf(root) && root->data == k)
-    {
-        for (int i = 0; i < v.size(); i++)
-        {
-            cout << v.at(i) << " ";
-        }
-        cout << endl;
-        return;
-    }
-    else
-    {
-        path_root_to_leaf(root->left, k - root->data, v);
-        path_root_to_leaf(root->right, k - root->data, v);
-    }
-    return;
+    
 }
 
 int main()
 {
     binarytreenode<int> *root = inputbinarytree();
-    int k;
-    cin >> k;
+    int node,k;
+    cin >>node >>k;
 
-    path_root_to_leaf(root, k);
+    distance_from_node(root, node,k);
 
     delete root;
 }
