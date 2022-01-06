@@ -12,19 +12,18 @@ int longest_subarray(int *arr, int n)
     {
         sum += arr[i];
 
-        if (summap.count(sum) > 0)
+        if (sum == 0)
+        {
+            tempans = i + 1;
+            ans = max(ans, tempans);
+        }
+        else if (summap.count(sum) > 0)
         {
             tempans = i - summap[sum];
             ans = max(ans, tempans);
         }
         else
         {
-            if (sum == 0)
-            {
-                tempans = i + 1;
-                ans = max(ans, tempans);
-            }
-
             summap[sum] = i;
         }
     }
