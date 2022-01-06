@@ -14,7 +14,21 @@ int pair_with_diff_k(int *arr, int n, int k, unordered_map<int, int> map)
         {
             ans += (it->second * (it->second - 1) / 2);
         }
+        else
+        {
+            if (map.count(it->first - k) > 0)
+            {
+                ans += (map[it->first - k] * map[it->first]);
+            }
+            if (map.count(it->first + k) > 0)
+            {
+                ans += (map[it->first + k] * map[it->first]);
+            }
+        }
+        it->second = 0;
+        it++;
     }
+    return ans;
 }
 
 int main()
@@ -30,7 +44,8 @@ int main()
         {
             map[arr[i]] += 1;
         }
-        map[arr[i]] = 1;
+        else
+            map[arr[i]] = 1;
     }
     cin >> k;
 
