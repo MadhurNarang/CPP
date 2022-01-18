@@ -10,6 +10,7 @@
         "*.tcc": "cpp",
         "cmath": "cpp",
         "numeric": "cpp",
-        "cstdlib": "cpp"
+        "cstdlib": "cpp",
+        "vector": "cpp"
     }
 }

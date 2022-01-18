@@ -3,9 +3,9 @@
 #include <vector>
 using namespace std;
 
-vector<int> *k_smallest_elements(int *arr, int n, int k)
+vector<int> *k_largest_elements(int *arr, int n, int k)
 {
-    priority_queue<int> pq;
+    priority_queue<int, vector<int>, greater<int>> pq;
     for (int i = 0; i < k; i++)
     {
         pq.push(arr[i]);
@@ -13,7 +13,7 @@ vector<int> *k_smallest_elements(int *arr, int n, int k)
 
     for (int i = k; i < n; i++)
     {
-        if (arr[i] < pq.top())
+        if (arr[i] > pq.top())
         {
             pq.pop();
             pq.push(arr[i]);
@@ -41,7 +41,7 @@ int main()
     }
     cin >> k;
 
-    vector<int> *ans = k_smallest_elements(arr, n, k);
+    vector<int> *ans = k_largest_elements(arr, n, k);
 
     for (int i = 0; i < ans->size(); i++)
     {
