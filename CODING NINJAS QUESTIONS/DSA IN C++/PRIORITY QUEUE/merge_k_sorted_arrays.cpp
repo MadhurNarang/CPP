@@ -58,13 +58,11 @@ vector<int> *merge_k_sorted_arrays(int k, int *n, int **aarr)
 int main()
 {
     int k;
-    cout << "ENTER K : ";
     cin >> k;
     int *n = new int[k];
     int **aarr = new int *[k];
     for (int i = 0; i < k; i++)
     {
-        cout << "ENTER N : ";
         cin >> n[i];
         int *arr = new int[n[i]];
         for (int j = 0; j < n[i]; j++)
