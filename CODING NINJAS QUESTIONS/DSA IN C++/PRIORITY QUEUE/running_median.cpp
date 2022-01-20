@@ -35,61 +35,16 @@ void running_median(int *arr, int n)
         if (i % 2 == 1)
         {
             cout << (max.top() + min.top()) / 2 << " ";
-            priority_queue<int> tempmax = max;
-            priority_queue<int, vector<int>, greater<>> tempmin = min;
-            cout << "\nMAX :";
-            while (!tempmax.empty())
-            {
-                cout << tempmax.top() << " ";
-                tempmax.pop();
-            }
-            cout << "\nMIN :";
-            while (!tempmin.empty())
-            {
-                cout << tempmin.top() << " ";
-                tempmin.pop();
-            }
-            cout << endl;
         }
         else
         {
             if (max.size() > min.size())
             {
                 cout << max.top() << " ";
-                priority_queue<int> tempmax = max;
-                priority_queue<int, vector<int>, greater<>> tempmin = min;
-                cout << "\nMAX :";
-                while (!tempmax.empty())
-                {
-                    cout << tempmax.top() << " ";
-                    tempmax.pop();
-                }
-                cout << "\nMIN :";
-                while (!tempmin.empty())
-                {
-                    cout << tempmin.top() << " ";
-                    tempmin.pop();
-                }
-                cout << endl;
             }
             else if (max.size() < min.size())
             {
                 cout << min.top() << " ";
-                priority_queue<int> tempmax = max;
-                priority_queue<int, vector<int>, greater<>> tempmin = min;
-                cout << "\nMAX :";
-                while (!tempmax.empty())
-                {
-                    cout << tempmax.top() << " ";
-                    tempmax.pop();
-                }
-                cout << "\nMIN :";
-                while (!tempmin.empty())
-                {
-                    cout << tempmin.top() << " ";
-                    tempmin.pop();
-                }
-                cout << endl;
             }
         }
     }
