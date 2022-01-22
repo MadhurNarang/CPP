@@ -13,14 +13,14 @@ public:
 
     void insertword(trienode *root, string word)
     {
-        //base case
+        // base case
         if (word.size() == 0)
         {
             root->isterminal = true;
             return;
         }
 
-        //small calculation
+        // small calculation
         int index = word[0] - 'a';
         trienode *child;
         if (root->children[index] != NULL)
@@ -33,13 +33,88 @@ public:
             root->children[index] = child;
         }
 
-        //recursive call
+        // recursive call
         insertword(child, word.substr(1));
     }
 
     // helper funcion
-    void insertpord(string word)
+    void insertword(string word)
     {
         insertword(this->root, word);
+    }
+
+    bool searchword(trienode *root, string word)
+    {
+        // base case
+        if (word.size() == 0)
+        {
+            return (root->isterminal == true);
+        }
+
+        // small calculations
+        bool ans = true, smallans;
+        int index = word[0] - 'a';
+        trienode *child = root->children[index];
+
+        if (child == NULL)
+        {
+            return false;
+        }
+        else
+        {
+            // recursive call
+            smallans = searchword(child, word.substr(1));
+        }
+
+        return smallans && ans;
+    }
+
+    // helper function
+    bool searchword(string word)
+    {
+        return searchword(this->root, word);
+    }
+
+    void removeword(trienode *root, string word)
+    {
+        // base case
+        if (word.size() == 0)
+        {
+            root->isterminal = false;
+            return;
+        }
+
+        // small calculation
+        int index = word[0] - 'a';
+        trienode *child = root->children[index];
+        if (child != NULL)
+        {
+            // recursive call
+            removeword(child, word.substr(1));
+
+            // remove child if it is useless
+            if (child->isterminal == false)
+            {
+                for (int i = 0; i < 26; i++)
+                {
+                    if (child->children[i] != NULL)
+                    {
+                        return;
+                    }
+                }
+                delete child;
+                root->children[index] = NULL;
+            }
+        }
+        else
+        {
+            return;
+        }
+    }
+
+    // helper function
+    void removeword(string word)
+    {
+        removeword(this->root, word);
     }
 };
