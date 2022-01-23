@@ -117,4 +117,44 @@ public:
     {
         removeword(this->root, word);
     }
+
+    void pattern_insertword(string word)
+    {
+        for (int i = 0; i < word.size(); i++)
+        {
+            insertword(word.substr(i));
+        }
+    }
+
+    bool pattern_searchword(trienode *root, string word)
+    {
+        // base case
+        if (word.size() == 0)
+        {
+            return true;
+        }
+
+        // small calculations
+        bool ans = true, smallans;
+        int index = word[0] - 'a';
+        trienode *child = root->children[index];
+
+        if (child == NULL)
+        {
+            return false;
+        }
+        else
+        {
+            // recursive call
+            smallans = pattern_searchword(child, word.substr(1));
+        }
+
+        return smallans && ans;
+    }
+
+    // helper function
+    bool pattern_searchword(string word)
+    {
+        return pattern_searchword(this->root, word);
+    }
 };
