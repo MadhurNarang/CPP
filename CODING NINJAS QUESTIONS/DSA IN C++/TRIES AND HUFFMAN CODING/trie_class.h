@@ -157,4 +157,9 @@ public:
     {
         return pattern_searchword(this->root, word);
     }
+
+    trienode *getroot()
+    {
+        return root;
+    }
 };
