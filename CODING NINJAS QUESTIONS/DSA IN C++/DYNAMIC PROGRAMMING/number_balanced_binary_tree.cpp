@@ -12,12 +12,12 @@ int nobalanced_recursion(int n)
     int x = nobalanced_recursion(n - 1);
     int y = nobalanced_recursion(n - 2);
 
-    int mod = (int)(pow(10, 9)) + 7;
+    int mod = (int)(pow(10, 9) + 1e-9) + 7;
 
-    int temp1 = (int)((long)(x)*x) % mod;
-    int temp2 = (int)(2 * (long)(x)*y) % mod;
+    int temp1 = (int)(((long)(x)*x) % mod);
+    int temp2 = (int)((2 * (long)(x)*y) % mod);
 
-    int nobalanced = (temp1 + temp2) % mod;
+    int nobalanced = (int)(((long)(temp1) + temp2) % mod);
 
     return nobalanced;
 }
@@ -34,15 +34,15 @@ int nobalanced_memoization(int n, int *arr)
         return arr[n];
     }
 
-    int x = nobalanced_recursion(n - 1);
-    int y = nobalanced_recursion(n - 2);
+    int x = nobalanced_memoization(n - 1, arr);
+    int y = nobalanced_memoization(n - 2, arr);
 
-    int mod = (int)(pow(10, 9)) + 7;
+    int mod = (int)(pow(10, 9) + 1e-9) + 7;
 
-    int temp1 = (int)((long)(x)*x) % mod;
-    int temp2 = (int)(2 * (long)(x)*y) % mod;
+    int temp1 = (int)(((long)(x)*x) % mod);
+    int temp2 = (int)((2 * (long)(x)*y) % mod);
 
-    int nobalanced = (temp1 + temp2) % mod;
+    int nobalanced = (int)(((long)(temp1) + temp2) % mod);
 
     arr[n] = nobalanced;
 
@@ -72,12 +72,12 @@ int nobalanced_dp(int n)
         int x = arr[i - 1];
         int y = arr[i - 2];
 
-        int mod = (int)(pow(10, 9)) + 7;
+        int mod = (int)(pow(10, 9) + 1e-9) + 7;
 
-        int temp1 = (int)((long)(x)*x) % mod;
-        int temp2 = (int)(2 * (long)(x)*y) % mod;
+        int temp1 = (int)(((long)(x)*x) % mod);
+        int temp2 = (int)((2 * (long)(x)*y) % mod);
 
-        int nobalanced = (temp1 + temp2) % mod;
+        int nobalanced = (int)(((long)(temp1) + temp2) % mod);
         arr[i] = nobalanced;
     }
 
