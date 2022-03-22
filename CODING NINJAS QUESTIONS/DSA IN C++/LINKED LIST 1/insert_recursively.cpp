@@ -39,15 +39,16 @@ node *takeinput()
 
 node *insertnode(node *head, int i, int data)
 {
-    if (head == NULL)
-    {
-        return head;
-    }
     if (i == 0)
     {
         node *newnode = new node(data);
         newnode->next = head;
         head = newnode;
+        return head;
+    }
+
+    if (head == NULL)
+    {
         return head;
     }
     node *x = insertnode(head->next, i - 1, data);
