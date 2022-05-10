@@ -70,8 +70,39 @@ int mincost_memoization_helper(int **arr, int m, int n)
     return mincost_memoization(arr, m, n, 0, 0, ans);
 }
 
-int mincost_dp(int *arr, int m, int n)
+int mincost_dp(int **arr, int m, int n)
 {
+    int **ans = new int *[m];
+    for (int i = 0; i < m; i++)
+    {
+        ans[i] = new int[n];
+    }
+
+    // fill last element
+    ans[m - 1][n - 1] = arr[m - 1][n - 1];
+
+    // fill last row(right to left)
+    for (int j = n - 2; j >= 0; j--)
+    {
+        ans[m - 1][j] = arr[m - 1][j] + ans[m - 1][j + 1];
+    }
+
+    // fill last column(bottom to top)
+    for (int i = m - 2; i >= 0; i--)
+    {
+        ans[i][n - 1] = arr[i][n - 1] + ans[i + 1][n - 1];
+    }
+
+    // fill remaining cells (left to right then bottom to top)
+    for (int i = m - 2; i >= 0; i--)
+    {
+        for (int j = n - 2; j >= 0; j--)
+        {
+            ans[i][j] = min(ans[i + 1][j], min(ans[i][j + 1], ans[i + 1][j + 1])) + arr[i][j];
+        }
+    }
+
+    return ans[0][0];
 }
 
 int main()
@@ -92,4 +123,5 @@ int main()
 
     cout << mincost_recursion(arr, m, n) << endl;
     cout << mincost_memoization_helper(arr, m, n) << endl;
+    cout << mincost_dp(arr, m, n) << endl;
 }
